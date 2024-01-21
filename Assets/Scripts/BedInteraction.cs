@@ -1,43 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class BedInteractionScript : MonoBehaviour
+public class CollidableObject : MonoBehaviour
 {
-    public Text popupText;  // Reference to the Text component for displaying the pop-up message
+    private Collider2D z_Collider;
+    [SerializeField]
+    private ContactFilter2D z_Filter;
+    private List<Collider2D> z_CollidedObjects = new List<Collider2D>(1);
 
-    private bool isPlayerInRange = false;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void Start()
     {
-        if (collision.CompareTag("Player"))
+        // Try to get the Collider2D component from the player GameObject
+        z_Collider = GetComponent<Collider2D>();
+
+        // If z_Collider is still null, log an error
+        if (z_Collider == null)
         {
-            isPlayerInRange = true;
-            popupText.text = "Press 'E' to interact with the bed";
-            popupText.gameObject.SetActive(true);
+            Debug.LogError("Collider2D component not found on " + gameObject.name + ". Make sure the player GameObject has a Collider2D component.");
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    protected virtual void Update()
     {
-        if (collision.CompareTag("Player"))
+        if (z_Collider != null)
         {
-            isPlayerInRange = false;
-            popupText.gameObject.SetActive(false);
+            z_Collider.OverlapCollider(z_Filter, z_CollidedObjects);
+            foreach (var o in z_CollidedObjects)
+            {
+                if (o != null)
+                {
+                    OnCollided(o.gameObject);
+                }
+            }
         }
     }
 
-    private void Update()
+    protected virtual void OnCollided(GameObject collidedObject)
     {
-        if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
-        {
-            // Implement your interaction logic here
-            ShowPopup("You interacted with the bed!");
-        }
-    }
-
-    private void ShowPopup(string message)
-    {
-        // You can customize the pop-up appearance here
-        Debug.Log(message);
+        Debug.Log("Collided with " + collidedObject.name);
     }
 }
