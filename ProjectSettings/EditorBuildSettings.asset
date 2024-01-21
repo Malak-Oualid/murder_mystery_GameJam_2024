@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Bedroom.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Cafe.unity
+    guid: a20f36bdd426747b2b0509114d279028
+  - enabled: 1
+    path: Assets/Scenes/CafeBar.unity
+    guid: 62b422db0f0444f61a72bb845dfbd2b0
   m_configObjects: {}
