@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4691007901841502572}
   - component: {fileID: 7745356740528785146}
   m_Layer: 0
-  m_Name: Triggerbox
+  m_Name: Pop up text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

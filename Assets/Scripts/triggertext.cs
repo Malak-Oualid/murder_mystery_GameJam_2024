@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class triggertext : MonoBehaviour
 {
-    public GameObject uiObject;
 
+    public GameObject uiObject;
+    //void Start()
+    //{
+    //    uiObject.SetActive(false);
+    //}
     // Update is called once per frame
     void OnTriggerEnter2D(Collider2D player)
     {
-        
-        if (player.gameObject.tag == "Player")
+        if (player.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.Y))
         {
             uiObject.SetActive(true);
             StartCoroutine("WaitForSec");
@@ -19,7 +22,7 @@ public class triggertext : MonoBehaviour
     IEnumerator WaitForSec()
     {
         yield return new WaitForSeconds(5);
-        uiObject.SetActive(false);
+        Destroy(uiObject);
         Destroy(gameObject);
     }
 
