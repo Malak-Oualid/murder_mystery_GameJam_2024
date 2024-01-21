@@ -28,16 +28,13 @@ public class CollidableObject : MonoBehaviour
             z_Collider.OverlapCollider(z_Filter, z_CollidedObjects);
             foreach (var o in z_CollidedObjects)
             {
-                if (o != null)
-                {
-                    OnCollided(o.gameObject);
-                }
+                // if (o != null)
+                // {
+                //     OnCollided(o.gameObject);
+                // }
             }
         }
     }
 
-    protected virtual void OnCollided(GameObject collidedObject)
-    {
-        Debug.Log("Collided with " + collidedObject.name);
-    }
+    
 }
