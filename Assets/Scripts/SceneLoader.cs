@@ -7,9 +7,9 @@ public class SceneLoader : MonoBehaviour
 {
 
     public GameObject Player;
-
-    // Text to display
-    public string displayText = "Player entered the box!";
+    public bool instair = false;
+    // private bool in_stair = false;
+    // public boolean in_stair = false;
 
     // This function is called when something enters the collider of the box object
     private void OnTriggerEnter2D(Collider2D other)
@@ -17,21 +17,28 @@ public class SceneLoader : MonoBehaviour
         // Check if the entering object is the player
         if (other.gameObject == Player)
         {
-            // Display the text or perform any other actions
-            DisplayText(displayText);
+            
+            instair = true;
+            // Debug.Log("in");
         }
     }
 
-    
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject == Player)
+        {
+            instair = false;
+            // Debug.Log("out");
+        }
 
-    // Function to display the text
-    private void DisplayText(string text)
-    {
-        // Implement code to display the text on the screen or in the game
-        Debug.Log("uwu");
     }
-    public void LoadScene(string sceneName)
+    void Update()
     {
-        SceneManager.LoadScene(sceneName);
+        if (instair==true && Input.GetKeyDown(KeyCode.E))
+        {
+            SceneManager.LoadScene("Cafe");
+            // Debug.Log("switchscene");
+        }
     }
+    
 }
