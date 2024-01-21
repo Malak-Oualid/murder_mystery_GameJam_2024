@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+public class Godownstair : MonoBehaviour
 {
 
     public GameObject Player;
     public bool instair = false;
-    // private bool in_stair = false;
-    // public boolean in_stair = false;
-
-    // This function is called when something enters the collider of the box object
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Check if the entering object is the player
